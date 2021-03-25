@@ -2,16 +2,17 @@ package ro.pub.cs.systems.eim.lab03.phonedialer.view;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import ro.pub.cs.systems.eim.lab03.phonedialer.R;
 import ro.pub.cs.systems.eim.lab03.phonedialer.general.Constants;
@@ -19,9 +20,9 @@ import ro.pub.cs.systems.eim.lab03.phonedialer.general.Constants;
 public class PhoneDialerActivity extends AppCompatActivity {
 
     private EditText phoneNumberEditText;
-    private Button callImageButton;
-    private Button hangupImageButton;
-    private Button backspaceImageButton;
+    private ImageButton callImageButton;
+    private ImageButton hangupImageButton;
+    private ImageButton backspaceImageButton;
     private Button genericButton;
 
     private CallImageButtonClickListener callImageButtonClickListener = new CallImageButtonClickListener();
@@ -73,16 +74,17 @@ public class PhoneDialerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_dialer);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        phoneNumberEditText = findViewById(R.id.phone_number_edit_text);
-        callImageButton = findViewById(R.id.button_call);
+        phoneNumberEditText = (EditText)findViewById(R.id.phone_number_edit_text);
+        callImageButton = (ImageButton)findViewById(R.id.call_image_button);
         callImageButton.setOnClickListener(callImageButtonClickListener);
-        hangupImageButton = findViewById(R.id.button_hangup);
+        hangupImageButton = (ImageButton)findViewById(R.id.hangup_image_button);
         hangupImageButton.setOnClickListener(hangupImageButtonClickListener);
-        backspaceImageButton = findViewById(R.id.button_backspace);
+        backspaceImageButton = (ImageButton)findViewById(R.id.backspace_image_button);
         backspaceImageButton.setOnClickListener(backspaceButtonClickListener);
         for (int index = 0; index < Constants.buttonIds.length; index++) {
-            genericButton = findViewById(Constants.buttonIds[index]);
+            genericButton = (Button)findViewById(Constants.buttonIds[index]);
             genericButton.setOnClickListener(genericButtonClickListener);
         }
     }

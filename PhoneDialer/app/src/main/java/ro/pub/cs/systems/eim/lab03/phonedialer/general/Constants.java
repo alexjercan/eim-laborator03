@@ -5,18 +5,18 @@ import ro.pub.cs.systems.eim.lab03.phonedialer.R;
 public interface Constants {
 
     final public static int buttonIds[] = {
-            R.id.button_0,
-            R.id.button_1,
-            R.id.button_2,
-            R.id.button_3,
-            R.id.button_4,
-            R.id.button_5,
-            R.id.button_6,
-            R.id.button_7,
-            R.id.button_8,
-            R.id.button_9,
-            R.id.button_star,
-            R.id.button_hash
+            R.id.number_0_button,
+            R.id.number_1_button,
+            R.id.number_2_button,
+            R.id.number_3_button,
+            R.id.number_4_button,
+            R.id.number_5_button,
+            R.id.number_6_button,
+            R.id.number_7_button,
+            R.id.number_8_button,
+            R.id.number_9_button,
+            R.id.star_button,
+            R.id.pound_button
     };
     final public static int PERMISSION_REQUEST_CALL_PHONE = 1;
 }

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Phone Dialer</string>
-    <string name="phone_number">Enter Number</string>
+    <string name="number_0">0</string>
     <string name="number_1">1</string>
     <string name="number_2">2</string>
     <string name="number_3">3</string>
@@ -10,8 +10,6 @@
     <string name="number_7">7</string>
     <string name="number_8">8</string>
     <string name="number_9">9</string>
-    <string name="number_0">0</string>
-    <string name="number_star">*</string>
-    <string name="number_hash">#</string>
-    <string name="number_backspace"><![CDATA[<<]]></string>
+    <string name="star">*</string>
+    <string name="pound">#</string>
 </resources>
