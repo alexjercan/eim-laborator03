@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.media.Image;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import ro.pub.cs.systems.eim.lab03.phonedialer.R;
 import ro.pub.cs.systems.eim.lab03.phonedialer.general.Constants;
@@ -23,6 +25,7 @@ public class PhoneDialerActivity extends AppCompatActivity {
     private ImageButton callImageButton;
     private ImageButton hangupImageButton;
     private ImageButton backspaceImageButton;
+    private ImageButton contactsImageButton;
     private Button genericButton;
 
     private CallImageButtonClickListener callImageButtonClickListener = new CallImageButtonClickListener();
@@ -62,6 +65,21 @@ public class PhoneDialerActivity extends AppCompatActivity {
         }
     }
 
+    private ContactsImageButtonClickListener contactsImageButtonClickListener = new ContactsImageButtonClickListener();
+    private class ContactsImageButtonClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            String phoneNumber = phoneNumberEditText.getText().toString();
+            if (phoneNumber.length() > 0) {
+                Intent intent = new Intent("ro.pub.cs.systems.eim.lab04.contactsmanager.intent.action.ContactsManagerActivity");
+                intent.putExtra("ro.pub.cs.systems.eim.lab04.contactsmanager.PHONE_NUMBER_KEY", phoneNumber);
+                startActivityForResult(intent, Constants.CONTACTS_MANAGER_REQUEST_CODE);
+            } else {
+                Toast.makeText(getApplication(), getResources().getString(R.string.phone_error), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
     private GenericButtonClickListener genericButtonClickListener = new GenericButtonClickListener();
     private class GenericButtonClickListener implements View.OnClickListener {
         @Override
@@ -86,6 +104,17 @@ public class PhoneDialerActivity extends AppCompatActivity {
         for (int index = 0; index < Constants.buttonIds.length; index++) {
             genericButton = (Button)findViewById(Constants.buttonIds[index]);
             genericButton.setOnClickListener(genericButtonClickListener);
+        }
+        contactsImageButton = (ImageButton)findViewById(R.id.contacts_image_button);
+        contactsImageButton.setOnClickListener(contactsImageButtonClickListener);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        switch (requestCode) {
+            case Constants.CONTACTS_MANAGER_REQUEST_CODE:
+                Toast.makeText(this, "Activity returned with result " + resultCode, Toast.LENGTH_LONG).show();
+                break;
         }
     }
 }
